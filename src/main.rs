@@ -28,7 +28,6 @@ impl Particle {
     fn update(&mut self) {
         self.position += self.velocity;
 
-        // Colisión con las paredes de la pantalla
         if self.position.x < 0.0 || self.position.x > screen_width() {
             self.velocity.x = -self.velocity.x;
         }
@@ -53,7 +52,6 @@ async fn main() {
     loop {
         clear_background(BLACK);
 
-        // Encontrar la partícula más cercana para cada partícula
         for i in 0..particles.len() {
             let mut min_distance = f32::MAX;
             let mut closest_particle = None;
@@ -70,7 +68,6 @@ async fn main() {
             particles[i].connected_to = closest_particle;
         }
 
-        // Dibujar las partículas y las líneas
         for i in 0..particles.len() {
             particles[i].update();
             particles[i].draw();
